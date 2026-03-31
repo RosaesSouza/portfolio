@@ -1,38 +1,55 @@
-# sv
+# Portfólio - Gabriel Rosaes de Souza
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+## Objetivo
+Este projeto é um portfólio pessoal desenvolvido com SvelteKit para apresentar:
+- formação acadêmica;
+- experiências profissionais;
+- projetos desenvolvidos;
+- formas de contato.
 
-## Creating a project
+O foco é ter uma página simples, responsiva e com suporte a tema (claro/escuro) e idioma (PT/EN).
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Como rodar
+Pré-requisitos:
+- Node.js 18+;
+- npm.
 
-```bash
-# create a new project in the current directory
-npx sv create
+Instalação das dependências:
+- npm install
 
-# create a new project in my-app
-npx sv create my-app
-```
+Ambiente de desenvolvimento:
+- npm run dev
 
-## Developing
+Build de produção:
+- npm run build
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Pré-visualização do build:
+- npm run preview
 
-```bash
-npm run dev
+## Estrutura do projeto
+- src/
+	- app.html: variáveis globais de tema, fontes e base visual.
+	- routes/
+		- +page.svelte: composição da página principal.
+	- lib/
+		- components/
+			- Header.svelte: perfil, título e botões de tema/idioma.
+			- Navbar.svelte: navegação entre as seções.
+			- Curriculo.svelte: seção de currículo.
+			- Portfolio.svelte: seção de projetos.
+			- Contato.svelte: seção de contatos.
+			- Footer.svelte: rodapé.
+		- stores/
+			- languageStore.js: estado de idioma.
+			- themeStore.js: estado de tema.
+			- arquivos de tradução: textos por seção (PT/EN).
+- static/
+	- icons/: ícones e manifest.
+	- linguagens/: imagens e assets usados na interface.
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## Scripts úteis
+- npm run dev: inicia o servidor de desenvolvimento.
+- npm run build: gera versão de produção.
+- npm run preview: executa preview da build.
+- npm run lint: valida formatação e lint.
+- npm run test: executa testes.
