@@ -66,21 +66,21 @@
     on:click={() => setMenu("curriculo")}
     class:active={activeMenu === "curriculo"}
   >
-    {$navTranslations.curriculum}
+    <span class="nav-label">{$navTranslations.curriculum}</span>
     <hr />
   </button>
   <button
     on:click={() => setMenu("portfolio")}
     class:active={activeMenu === "portfolio"}
   >
-    {$navTranslations.portfolio}
+    <span class="nav-label">{$navTranslations.portfolio}</span>
     <hr />
   </button>
   <button
     on:click={() => setMenu("contato")}
     class:active={activeMenu === "contato"}
   >
-    {$navTranslations.contact}
+    <span class="nav-label">{$navTranslations.contact}</span>
     <hr />
   </button>
 </nav>
@@ -113,72 +113,121 @@
 <style>
   nav {
     display: flex;
-    justify-content: space-around;
-    padding: 30px 0 0;
+    justify-content: center;
+    align-items: stretch;
+    padding: 24px 0 0;
     width: 100%;
-    max-width: 75%;
+    max-width: 100%;
     margin: 0 auto;
     position: relative;
+    gap: 12px;
+    animation: navFade 0.65s ease both 0.1s;
   }
 
   nav button {
-    background: none;
-    border: none;
+    background: color-mix(in srgb, var(--secondary-color) 78%, transparent);
+    border: 1px solid var(--surface-stroke);
+    border-radius: 999px;
     font-size: 1.2em;
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 0 20px;
     position: relative;
-    color: #a0a0a0;
-    transition: color 0.3s ease;
+    color: var(--text-soft);
+    transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     outline: none;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    min-height: 56px;
+    line-height: 1.1;
+    text-align: center;
+    box-shadow: 0 6px 16px var(--shadow-color);
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    flex: 1 1 0;
   }
 
   nav button hr {
-    width: 100%;
+    position: absolute;
+    left: 50%;
+    bottom: 9px;
+    width: 0;
+    transform: translateX(-50%);
     border: none;
-    margin-top: 5px;
+    margin: 0;
     transition: all 0.3s ease;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent-color), #ffc14e);
+  }
+
+  .nav-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    transform: translateY(-1px);
+  }
+
+  nav button:hover {
+    transform: translateY(-2px);
+    background: color-mix(in srgb, var(--secondary-color) 90%, transparent);
+    color: var(--primary-color);
   }
 
   nav button.active {
     color: var(--primary-color);
+    background: color-mix(in srgb, var(--secondary-color) 96%, transparent);
+    box-shadow: 0 10px 22px var(--shadow-color);
   }
 
   nav button.active hr {
-    background-color: var(--primary-color);
-    height: 2px;
+    width: min(56%, 64px);
   }
 
   main {
-    padding: 20px;
+    padding: 18px;
     flex-direction: column;
-    flex-grow: 1;
+    flex-grow: 0;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
-    height: calc(100vh - 35vh);
-    min-height: 300px;
+    min-height: fit-content;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    margin-top: 10px;
+    flex: 0 0 auto;
   }
 
   main > div {
     width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+    height: auto;
+    position: relative;
     display: flex;
     flex-direction: column;
-    min-height: 0;
-    padding: 20px;
+    min-height: fit-content;
+    padding: 22px 22px 28px;
     box-sizing: border-box;
+    overflow: visible;
+  }
+
+  @keyframes navFade {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   /*--------------------------RESPONSIVIDADE--------------------------*/
@@ -186,32 +235,29 @@
     nav button {
       font-size: 2rem;
     }
-
-    main {
-      height: calc(100vh - 35vh);
-      min-height: 400px;
-    }
   }
 
   @media (max-width: 1000px) {
     nav {
-      max-width: 90%;
+      max-width: 100%;
       padding: 20px 0 0;
+      gap: 8px;
     }
 
     nav button {
       font-size: 1.1rem;
-      padding: 5px;
+      padding: 0 12px;
+      min-height: 50px;
     }
 
     main {
-      height: calc(100vh - 25vh);
-      width: 95%;
-      padding: 10px;
+      width: 100%;
+      padding: 8px 2px;
+      border-radius: 0;
     }
     
     main > div {
-      padding: 15px 10px;
+      padding: 16px 12px 24px;
     }
   }
 
@@ -219,21 +265,29 @@
     nav {
       max-width: 100%;
       padding: 15px 0 0;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
     
     nav button {
-      font-size: 1rem;
-      padding: 3px 5px;
+      font-size: 0.95rem;
+      padding: 0 10px;
+      min-width: 110px;
+      min-height: 46px;
+      flex: 1 1 30%;
     }
 
     main {
-      height: calc(100vh - 300px);
-      padding: 10px 5px;
+      height: auto;
+      min-height: 0;
+      padding: 8px 0;
       width: 100%;
+      border-radius: 0;
     }
     
     main > div {
-      padding: 10px 5px;
+      padding: 12px 8px 20px;
     }
   }
 </style>

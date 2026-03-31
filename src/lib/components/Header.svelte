@@ -41,7 +41,7 @@
         aria-label={$headerTranslations.languageToggle}
       >
         <span class="toggle-text">
-          {$language === "pt" ? "EN" : "PT"}
+          {$language === "pt" ? "PT" : "EN"}
         </span>
       </button>
     </div>
@@ -53,7 +53,13 @@
     width: 100%;
     height: 25vh;
     min-height: 200px;
-    background: var(--primary-color);
+    background: var(--surface-color);
+    border: 1px solid var(--surface-stroke);
+    border-radius: 26px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 16px 34px var(--shadow-color);
+    margin-top: 14px;
+    animation: topSlide 0.65s ease both;
   }
 
   .container {
@@ -62,12 +68,13 @@
     margin: 0 auto;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     position: relative;
   }
 
   .toggle {
-    background: rgba(255, 252, 226, 0.1);
-    border: 1px solid rgba(255, 252, 226, 0.2);
+    background: color-mix(in srgb, var(--secondary-color) 84%, transparent);
+    border: 1px solid var(--surface-stroke);
     border-radius: 50%;
     width: 45px;
     height: 45px;
@@ -75,7 +82,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    color: var(--secondary-color);
+    color: var(--primary-color);
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     margin-top: 5px;
@@ -83,9 +90,9 @@
   }
 
   .toggle:hover {
-    background: rgba(255, 252, 226, 0.2);
-    border-color: rgba(255, 252, 226, 0.4);
-    transform: scale(1.05);
+    background: color-mix(in srgb, var(--secondary-color) 96%, transparent);
+    border-color: var(--accent-color);
+    transform: scale(1.05) translateY(-2px);
   }
 
   .toggle:active {
@@ -111,23 +118,33 @@
   }
 
   .header-text {
-    margin-left: 4%;
-    color: var(--secondary-color);
+    margin-left: 14px;
+    color: var(--primary-color);
+    text-align: left;
+    flex: 0 1 auto;
   }
 
   .title {
-    font-size: 1.5rem;
+    font-size: 1.65rem;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    margin: 0;
   }
 
   .subtitle {
     font-size: 1rem;
+    color: var(--text-soft);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
   }
 
   hr {
     border: 0;
     height: 1px;
-    background: var(--secondary-color);
-    margin: 5px 0;
+    background: linear-gradient(90deg, var(--accent-color), rgba(210, 175, 85, 0.15));
+    margin: 8px 0;
+    width: 100%;
   }
 
   img {
@@ -135,6 +152,31 @@
     height: 10vw;
     object-fit: cover;
     border-radius: 50%;
+    border: 2px solid color-mix(in srgb, var(--accent-color) 80%, transparent);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    animation: avatarPop 0.75s ease both 0.12s;
+  }
+
+  @keyframes topSlide {
+    from {
+      opacity: 0;
+      transform: translateY(-16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes avatarPop {
+    from {
+      opacity: 0;
+      transform: scale(0.85);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   /*--------------------------RESPONSIVIDADE--------------------------*/
@@ -170,12 +212,13 @@
 
   @media (max-width: 1000px) {
     .header {
-      height: 15vh;
-      min-height: 120px;
+      height: auto;
+      min-height: 170px;
+      padding: 14px 0;
     }
 
     .title {
-      font-size: 1rem;
+      font-size: 1.1rem;
       line-height: 1.3;
     }
 
@@ -184,8 +227,8 @@
     }
 
     .toggle {
-      width: 35px;
-      height: 35px;
+      width: 38px;
+      height: 38px;
     }
 
     .toggle :global(svg) {
@@ -199,6 +242,7 @@
       height: auto;
       min-height: 180px;
       padding: 20px 0 10px 0;
+      border-radius: 20px;
     }
 
     .container {
@@ -217,16 +261,16 @@
     }
 
     .header-text {
-      text-align: center;
+      text-align: left;
       margin-left: 0;
       margin-top: 15px;
       width: 100%;
     }
 
     img {
-      width: 100px;
-      height: 100px;
-      margin-bottom: -25px;
+      width: 92px;
+      height: 92px;
+      margin-bottom: -12px;
     }
 
     .toggle {

@@ -14,9 +14,36 @@
 
 <style>
 	main {
-		height: 100vh;
+		height: auto;
+		min-height: 100dvh;
 		display: flex;
 		flex-direction: column;
-		overflow: hidden;
+		overflow: visible;
+		max-width: none;
+		width: 100%;
+		margin: 0 auto;
+		padding: 0 16px 12px;
+		box-sizing: border-box;
+		animation: pageReveal 0.7s ease both;
+	}
+
+	@media (max-width: 700px) {
+		main {
+			min-height: 100dvh;
+			height: auto;
+			overflow: visible;
+			padding: 0 8px 64px;
+		}
+	}
+
+	@keyframes pageReveal {
+		from {
+			opacity: 0;
+			transform: translateY(16px) scale(0.99);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+		}
 	}
 </style>
